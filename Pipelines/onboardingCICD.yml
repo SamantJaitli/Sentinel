@@ -33,3 +33,25 @@ stages:
          inputs:
           PathtoPublish: '$(Pipeline.Workspace)'
           ArtifactName: OnboardingFile
+
+- stage: deploy_sentinel
+  jobs:
+    - job: AgentJob
+      pool:
+       name: Azure Pipelines
+       vmImage: 'windows-2019'
+      variables: 
+      - group: Az Connection settings
+      steps:
+      - download: current
+        artifact: OnboardingFile
+      - download: Scripts
+        patterns: '*.ps1'
+      - task: AzurePowerShell@4
+        displayName: 'Install Sentinel'
+        inputs:
+         azureSubscription: 'Soricloud Visual Studio'
+         ScriptPath: '$(Pipeline.Workspace)/Scripts/Scripts/InstallSentinel.ps1'
+         ScriptArguments: '-OnboardingFile onboarding.json'
+         azurePowerShellVersion: LatestVersion
+         pwsh: true
