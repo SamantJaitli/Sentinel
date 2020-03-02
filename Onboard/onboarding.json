@@ -2,7 +2,7 @@
     "deployments": [
         {
             "resourcegroup": "TestingSentinel",
-            "workspace": "WaypointServiceConnection"
+            "workspace": "Waypoint-Testing"
         }
      
     ]
