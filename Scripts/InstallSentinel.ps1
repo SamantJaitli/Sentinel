@@ -22,7 +22,7 @@ foreach ($item in $workspaces.deployments){
         Write-Host "SecurityInsights solution is already enabled for workspace $($item.workspace)"
     }
     else {
-        Set-AzSentinel -WorkspaceName "TestingAzureDevops" -Confirm:$false
+        Set-AzSentinel -WorkspaceName "Waypoint-Testing" -Confirm:$false
     }
 }
 
